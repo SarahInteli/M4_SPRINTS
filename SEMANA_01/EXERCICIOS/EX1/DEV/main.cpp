@@ -1,11 +1,41 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 // 1 -  Faça uma função que recebe uma certa medida e ajusta ela percentualmente 
 // entre dois valores mínimo e máximo e retorna esse valor
 
+void math() {
+    int min = 0;
+    int max = 50;
+    int value = 0;
+    
+    cout << "Insira um valor no intervalo de 0 e 50: ";
+    cin >> value;
+    cout << "O percentual do valor ajustado é: "    
+        << float(value - min)/ float(max - min) * 100 << "%" << endl;
+    
+}
+
 // 2 - Faça uma função que simule a leitura de um sensor lendo o 
 // valor do teclado ao final a função retorna este valor
+
+void scanner() {
+
+	cout << "Pressione uma tecla qualquer: " << endl;
+
+	while (1) {
+		if (_kbhit()) {
+			cout << "A tecla pressionada foi: " << char(_getch()) << endl;
+			break;
+
+
+		}
+	}
+}
+
+
 
 // 3 - Faça uma função que armazena uma medida inteira qualquer 
 // em um vetor fornecido. Note que como C não possui vetores 
@@ -14,6 +44,23 @@
 // Evite também que, por acidente, um valor seja escrito em 
 // uma área de memória fora do vetor
 
+int* armazenar(int valor, int valorMax, int ultimoV, int* Vetor){
+    
+    if (ultimoV < valorMax) {
+    		cout << "Digite um numero para adicionar ao vetor: " << endl;
+    		Vetor[ultimoV + 1] = valor;
+    		ultimoV += 1;
+    	}
+    	else {
+    		return Vetor;
+    	}
+
+
+int main() {
+    armazenar();
+    return 0;
+}
+
 
 
 // 4 - Faça uma função que recebe um vetor com 4 posições que contém 
@@ -21,6 +68,9 @@
 // A função deve retornar duas informações: A primeira é a direção 
 // de maior distância ("Direita", "Esquerda", "Frente", "Tras") e a 
 // segunda é esta maior distância.
+
+
+
 
 
 
@@ -65,23 +115,53 @@ int dirige(int *v,int maxv){
 // O trecho abaixo irá utilizar as funções acima para ler os sensores e o movimento
 // do robô e no final percorrer o vetor e mostrar o movimento a cada direção baseado 
 // na maior distância a cada movimento
-void percorre(int *v,int tamPercorrido){		
-	int *vetorMov = v;
-	int maiorDir = 0;
+// void percorre(int *v,int tamPercorrido){		
+// 	int *vetorMov = v;
+// 	int maiorDir = 0;
 	
-	for(int i = 0; i< tamPercorrido; i+=4){
-		char *direcao = direcaoMenorCaminho(&(vetorMov[i]),&maiorDir);
-		printf("Movimentando para %s distancia = %i\n",direcao,maiorDir);
-	}
-}
+// 	for(int i = 0; i< tamPercorrido; i+=4){
+// 		char *direcao = direcaoMenorCaminho(&(vetorMov[i]),&maiorDir);
+// 		printf("Movimentando para %s distancia = %i\n",direcao,maiorDir);
+// 	}
+// }
 
 int main(int argc, char** argv) {
-	int maxVetor = 100;
-	int vetorMov[maxVetor*4];
-	int posAtualVet = 0;
+
+	math();
+	scanner();
+	armazenar();
+	// int maxVetor = 100;
+	// int vetorMov[maxVetor*4];
+	// int posAtualVet = 0;
 	
-	posAtualVet = dirige(vetorMov,maxVetor);
-	percorre(vetorMov,posAtualVet);
+	// posAtualVet = dirige(vetorMov,maxVetor);
+	// percorre(vetorMov,posAtualVet);
 	
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+int valor
+int valorMax
+int ultimoV
+
+
+void armazenar(valor, valorMax, ultimoV, int* Vetor){
+    // Escreva a função aqui
+    if(lastPos < valorMax -1){
+          Vetor[lastPos+1] = elemento;
+    } else {
+      cout<< "Valor maximo:" << valorMax <<" Ultima posição mais um: "<< lastPos + 1 << endl;
+    }
+    
+  }
