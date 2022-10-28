@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <conio.h>
 
 using namespace std;
 
@@ -44,22 +45,59 @@ void scanner() {
 // Evite também que, por acidente, um valor seja escrito em 
 // uma área de memória fora do vetor
 
-int* armazenar(int valor, int valorMax, int ultimoV, int* Vetor){
+void armazenar(int valor, int tamMax, int ultimaP, int* Vetor){
+    if(ultimaP < tamMax -1){
+          Vetor[ultimaP+1] = valor;
+    } else {
+      cout<< "Tamanho máximo maximo:" << tamMax <<" Ultima posição mais um: "<< ultimaP + 1 << endl;
+    }
     
-    if (ultimoV < valorMax) {
-    		cout << "Digite um numero para adicionar ao vetor: " << endl;
-    		Vetor[ultimoV + 1] = valor;
-    		ultimoV += 1;
-    	}
-    	else {
-    		return Vetor;
-    	}
+  }
 
 
-int main() {
-    armazenar();
-    return 0;
+// Para testar o exercício 3, é necessário descomentar a função main() abaixo:
+
+/*int main(){
+  int tamMax = 10;
+  int ultimaP = -1;
+  int Numeros[tamMax];
+  
+  armazenar(9, tamMax, ultimaP, Numeros);
+  ultimaP = ultimaP + 1;
+  armazenar(8, tamMax, ultimaP, Numeros);
+  ultimaP = ultimaP + 1;
+  armazenar(7, tamMax, ultimaP, Numeros);
+  ultimaP = ultimaP + 1;
+  armazenar(6, tamMax, ultimaP, Numeros);
+  ultimaP = ultimaP + 1;
+  armazenar(5, tamMax, ultimaP, Numeros);
+  ultimaP = ultimaP + 1;
+  armazenar(4, tamMax, ultimaP, Numeros);
+  ultimaP = ultimaP + 1;
+  armazenar(3, tamMax, ultimaP, Numeros);
+  ultimaP = ultimaP + 1;
+  
+  armazenar(2, tamMax, ultimaP, Numeros);
+  ultimaP = ultimaP + 1;
+  armazenar(1, tamMax, ultimaP, Numeros);
+  ultimaP = ultimaP + 1;
+  armazenar(0, tamMax, ultimaP, Numeros);
+  ultimaP = ultimaP + 1;
+  armazenar(100, tamMax, ultimaP, Numeros);
+  // valor esperado: mensagem de erro "Erro: tamMax: 10, ultimaP + 1 (indice): 10"
+  
+  cout << Numeros[0] << endl; // valor esperado: 9
+  cout << Numeros[1] << endl; // valor esperado: 8
+  cout << Numeros[2] << endl; // valor esperado: 7
+  cout << Numeros[3] << endl; // valor esperado: 6
+  cout << Numeros[4] << endl; // valor esperado: 5
+  cout << Numeros[5] << endl; // valor esperado: 4
+  cout << Numeros[6] << endl; // valor esperado: 3
+  cout << Numeros[7] << endl; // valor esperado: 2
+  cout << Numeros[8] << endl; // valor esperado: 1
+  cout << Numeros[9] << endl; // valor esperado: 0
 }
+*/
 
 
 
@@ -70,6 +108,67 @@ int main() {
 // segunda é esta maior distância.
 
 
+char* dirMaiorDist(int* Vetor){
+  int distanciaMaior = Vetor[0];
+  int numero = 0;
+  char* direcao[4] = {(char*)"Direita", (char*)"Esquerda", (char*)"Frente", (char*)"Trás"};
+  for(int i=1; i <= 3; i++){
+    if(Vetor[i]>distanciaMaior){
+      distanciaMaior = Vetor[i];
+      numero = i;
+    }
+  }
+  return direcao[numero];
+}
+
+int maiorDist(int *Vetor){
+  int distanciaMaior = Vetor[0];
+  for(int i = 1; i<=3; i++){
+    if(Vetor[i]>distanciaMaior){
+      distanciaMaior = Vetor[i];
+    }
+  }
+  return distanciaMaior;
+}
+
+
+
+/*
+// Descomente a função main abaixo para testar o exercício 4
+int main(){
+  //Considere que os valores sempre serão distintos
+  //Considere valores de distância inteiros entre 0 e 100
+  
+  // "Direita", "Esquerda", "Frente", "Tras"
+  int posicoes [4] = {0, 20, 100, 50};
+  
+  cout << dirMaiorDist(posicoes) << endl;
+  //valor esperado: Frente
+  cout << maiorDist(posicoes) << endl;
+  //valor esperado: 100
+  // "Direita", "Esquerda", "Frente", "Tras"
+  int posicoes2 [4] = {95, 70, 80, 50};
+  
+  cout << dirMaiorDist(posicoes2) << endl;
+  //valor esperado: Direita
+  cout << maiorDist(posicoes2) << endl;
+  //valor esperado: 95
+  // "Direita", "Esquerda", "Frente", "Tras"
+  int posicoes3 [4] = {10, 0, 50, 60};
+  
+  cout << dirMaiorDist(posicoes3) << endl;
+  //valor esperado: Tras
+  cout << maiorDist(posicoes3) << endl;
+  //valor esperado: 60
+  // "Direita", "Esquerda", "Frente", "Tras"
+  int posicoes4 [4] = {54, 55, 30, 0};
+  
+  cout << dirMaiorDist(posicoes4) << endl;
+  //valor esperado: Esquerda
+  cout << maiorDist(posicoes4) << endl;
+  //valor esperado: 55
+}
+*/
 
 
 
@@ -77,6 +176,33 @@ int main() {
 
 // 5 - Faça uma função que pergunta ao usuário se ele deseja continuar o mapeamento e 
 // retorna verdadeiro ou falso
+
+bool continuar(){
+  int parar;
+  cout<<"Deseja continuar? Digite 0 para não e 1 para sim!";
+  cin>>parar;
+  if(parar==1){
+    return(true);
+  }
+  else{
+    return(false);
+  }
+}
+
+
+// Para testar o exercício 5, é necessário descomentar a função main() abaixo:
+/*
+int main(){
+  int parar = 0;
+  
+  while (parar == 0){
+    parar = continuar();
+  }
+  return 1;
+}
+*/
+
+
 
 
 // 6 - A função abaixo (que está incompleta) vai "dirigindo" virtualmente um robô 
@@ -139,29 +265,3 @@ int main(int argc, char** argv) {
 	
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-int valor
-int valorMax
-int ultimoV
-
-
-void armazenar(valor, valorMax, ultimoV, int* Vetor){
-    // Escreva a função aqui
-    if(lastPos < valorMax -1){
-          Vetor[lastPos+1] = elemento;
-    } else {
-      cout<< "Valor maximo:" << valorMax <<" Ultima posição mais um: "<< lastPos + 1 << endl;
-    }
-    
-  }
